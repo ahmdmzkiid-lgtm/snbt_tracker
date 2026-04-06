@@ -1,0 +1,194 @@
+{
+  "tables": [
+    "account",
+    "error_logs",
+    "profiles",
+    "session",
+    "study_sessions",
+    "syllabus_categories",
+    "syllabus_topics",
+    "tryouts",
+    "user",
+    "user_progress",
+    "verification"
+  ],
+  "user_columns": [
+    {
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "name",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "email",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "email_verified",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "image",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    }
+  ],
+  "account_columns": [
+    {
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "account_id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "provider_id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "user_id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "access_token",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "refresh_token",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "id_token",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "access_token_expires_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "refresh_token_expires_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "scope",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "password",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    }
+  ],
+  "session_columns": [
+    {
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "expires_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "token",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "ip_address",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "user_agent",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "user_id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    }
+  ],
+  "verification_columns": [
+    {
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "identifier",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "value",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "expires_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "YES"
+    }
+  ],
+  "insert_test": "FAILED: column \"email_verified\" is of type timestamp without time zone but expression is of type boolean"
+}

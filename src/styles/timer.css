@@ -1,0 +1,191 @@
+/* ============================================
+   Study Timer Page Styles
+   ============================================ */
+.timer-page { animation: fadeIn 0.4s ease; }
+
+.timer-page__header {
+  margin-bottom: var(--space-xl);
+}
+
+.timer-page__header h1 { font-size: var(--font-xl); font-weight: 800; }
+
+/* Timer layout */
+.timer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+/* Main timer */
+.timer__main-card {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.timer__display {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.timer__display svg { transform: rotate(-90deg); width: 100%; height: 100%; display: block; }
+.timer__circle-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
+.timer__circle-fill {
+  fill: none;
+  stroke: url(#timer-gradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s linear;
+}
+
+.timer__time-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer__time {
+  font-size: var(--font-3xl);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer__phase {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.timer__controls {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.timer__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.timer__btn--play {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.timer__btn--play:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+}
+
+.timer__btn--secondary {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+}
+
+.timer__btn--secondary:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+.timer__btn i { width: 22px; height: 22px; }
+
+/* Topic selector */
+.timer__topic-picker {
+  width: 100%;
+  text-align: center;
+}
+
+.timer__topic-label { font-size: var(--font-xs); color: var(--text-muted); margin-bottom: var(--space-sm); }
+
+.timer__topic-select {
+  width: 100%;
+  padding: 10px var(--space-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-sm);
+  cursor: pointer;
+}
+
+.timer__topic-select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* Sessions log */
+.timer__sessions-card {
+  padding: var(--space-lg);
+}
+
+.timer__sessions-title {
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.session-list { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+.session-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius-md);
+}
+
+.session-item__topic { font-size: var(--font-sm); font-weight: 500; }
+.session-item__time { font-size: var(--font-xs); color: var(--text-muted); }
+.session-item__duration { font-size: var(--font-sm); font-weight: 600; color: var(--accent-cyan); }
+
+/* Heatmap */
+.timer__heatmap {
+  padding: var(--space-lg);
+}
+
+.heatmap__title { font-weight: 700; margin-bottom: var(--space-md); }
+
+.heatmap__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.heatmap__cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.heatmap__cell--l1 { background: rgba(59,130,246,0.15); }
+.heatmap__cell--l2 { background: rgba(59,130,246,0.3); }
+.heatmap__cell--l3 { background: rgba(59,130,246,0.5); }
+.heatmap__cell--l4 { background: rgba(59,130,246,0.7); }
+
+.heatmap__labels {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.heatmap__label {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .timer__grid { grid-template-columns: 1fr; }
+  .timer__display { width: 180px; height: 180px; }
+}

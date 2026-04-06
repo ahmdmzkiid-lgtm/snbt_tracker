@@ -1,0 +1,118 @@
+/* ============================================
+   Syllabus Tracker Page Styles
+   ============================================ */
+.syllabus { animation: fadeIn 0.4s ease; }
+
+.syllabus__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.syllabus__header h1 { font-size: var(--font-xl); font-weight: 800; }
+
+/* Tabs */
+.syllabus__tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: var(--space-xl);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.syllabus__tab {
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.syllabus__tab:hover { color: var(--text-primary); }
+.syllabus__tab.active { background: var(--accent-blue); color: white; }
+
+/* Category Progress */
+.syllabus__progress-header {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.syllabus__progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.syllabus__progress-label { font-weight: 600; }
+.syllabus__progress-pct { font-weight: 700; color: var(--accent-cyan); }
+
+/* Topic List */
+.topic-list { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+.topic-item {
+  position: relative;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  transition: all var(--transition-fast);
+}
+
+.topic-item:hover { background: var(--bg-card-hover); }
+
+.topic-item__info { flex: 1; min-width: 0; }
+.topic-item__name { font-weight: 600; font-size: var(--font-sm); margin-bottom: 4px; }
+.topic-item__bar { max-width: 200px; }
+
+.topic-item__status {
+  position: relative;
+  cursor: pointer;
+}
+
+.topic-item__status .status-pill { cursor: pointer; }
+
+/* Status dropdown */
+.status-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 20;
+  overflow: hidden;
+  min-width: 160px;
+  animation: scaleIn 0.15s ease;
+}
+
+.status-dropdown__item {
+  padding: 8px var(--space-md);
+  font-size: var(--font-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.status-dropdown__item:hover { background: rgba(59,130,246,0.1); }
+.status-dropdown__item.active { background: rgba(59,130,246,0.15); font-weight: 600; }
+
+@media (max-width: 768px) {
+  .syllabus__tabs { margin-bottom: var(--space-md); }
+  .topic-item { flex-wrap: wrap; padding: var(--space-md); }
+  .topic-item__bar { max-width: 100%; width: 100%; }
+  .syllabus__progress-header { padding: var(--space-md); }
+  .syllabus__progress-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+}

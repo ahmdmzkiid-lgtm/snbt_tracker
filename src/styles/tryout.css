@@ -1,0 +1,89 @@
+/* ============================================
+   Try-Out Analytics Page Styles
+   ============================================ */
+.tryout { animation: fadeIn 0.4s ease; }
+
+.tryout__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.tryout__header h1 { font-size: var(--font-xl); font-weight: 800; }
+
+/* Stats row uses .stats-row from dashboard */
+
+/* Chart */
+.tryout__chart {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.tryout__chart-title {
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+/* History Table */
+.tryout__history {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.tryout-table-wrapper {
+  overflow-x: auto;
+  margin-top: var(--space-md);
+}
+
+.tryout-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-sm);
+}
+
+.tryout-table th {
+  text-align: left;
+  padding: 10px var(--space-md);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tryout-table td {
+  padding: 12px var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tryout-table tbody tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+.tryout-table .score-high { color: var(--accent-green); font-weight: 600; }
+.tryout-table .score-mid { color: var(--accent-yellow); font-weight: 600; }
+.tryout-table .score-low { color: var(--accent-red); font-weight: 600; }
+
+.tryout-table .delete-btn {
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.tryout-table .delete-btn:hover { color: var(--accent-red); background: rgba(239,68,68,0.1); }
+
+/* Input form in modal */
+.to-form { display: flex; flex-direction: column; gap: var(--space-md); }
+.to-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+.to-form .form-group { display: flex; flex-direction: column; gap: 4px; }
+
+@media (max-width: 768px) {
+  .to-form .form-row { grid-template-columns: 1fr; }
+  .tryout-table td, .tryout-table th { padding: 8px var(--space-sm); }
+}
