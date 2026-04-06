@@ -15,8 +15,13 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  ...(process.env.BETTER_AUTH_TRUSTED_ORIGINS ? process.env.BETTER_AUTH_TRUSTED_ORIGINS.split(",") : [])
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: allowedOrigins,
   credentials: true,
 }));
 

@@ -9,7 +9,7 @@ console.log("TRUSTED:", process.env.BETTER_AUTH_TRUSTED_ORIGINS);
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
 
-  trustedOrigins: ["http://localhost:5173"],
+  trustedOrigins: process.env.BETTER_AUTH_TRUSTED_ORIGINS ? process.env.BETTER_AUTH_TRUSTED_ORIGINS.split(",") : ["http://localhost:5173"],
   
   database: drizzleAdapter(db, {
     provider: "pg",
