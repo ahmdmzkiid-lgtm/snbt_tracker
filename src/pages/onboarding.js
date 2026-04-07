@@ -11,6 +11,7 @@ let currentStep = 1;
 let authMode = 'register'; // 'register' | 'login'
 let authError = '';
 let userData = { name: '', targetUniv: '', targetUnivId: '', targetMajor: '' };
+let isAuthLoading = false;
 
 export function renderOnboarding() {
   const app = document.getElementById('app');
@@ -77,14 +78,14 @@ function renderStep1Auth() {
       </div>` : ''}
 
       <div class="onboarding__actions" style="flex-direction:column;gap:var(--space-md);">
-        <button class="btn-primary" id="btn-auth" style="width:100%;padding:14px;">
-          <i data-lucide="${isLogin ? 'log-in' : 'user-plus'}"></i>
-          ${isLogin ? 'Login' : 'Daftar & Lanjut'}
+        <button class="btn-primary" id="btn-auth" style="width:100%;padding:14px;" ${isAuthLoading ? 'disabled' : ''}>
+          <i data-lucide="${isAuthLoading ? 'loader-2' : (isLogin ? 'log-in' : 'user-plus')}" class="${isAuthLoading ? 'spin' : ''}"></i>
+          ${isAuthLoading ? 'Memproses...' : (isLogin ? 'Login' : 'Daftar & Lanjut')}
         </button>
         <div class="auth-toggle">
           ${isLogin
-            ? 'Belum punya akun? <button id="toggle-auth" class="auth-toggle__link">Daftar di sini</button>'
-            : 'Sudah punya akun? <button id="toggle-auth" class="auth-toggle__link">Login</button>'}
+            ? `Belum punya akun? <button id="toggle-auth" class="auth-toggle__link" ${isAuthLoading ? 'disabled' : ''}>Daftar di sini</button>`
+            : `Sudah punya akun? <button id="toggle-auth" class="auth-toggle__link" ${isAuthLoading ? 'disabled' : ''}>Login</button>`}
         </div>
       </div>
     </div>
@@ -121,7 +122,10 @@ function renderStep2Profile() {
       </div>
       
       <div class="onboarding__actions" style="margin-top:var(--space-lg);">
-        <button class="btn-primary" id="btn-finish" style="width:100%;padding:14px;">Set Target & Mulai Belajar! 🚀</button>
+        <button class="btn-primary" id="btn-finish" style="width:100%;padding:14px;" ${isAuthLoading ? 'disabled' : ''}>
+          <i data-lucide="${isAuthLoading ? 'loader-2' : 'rocket'}" class="${isAuthLoading ? 'spin' : ''}"></i>
+          ${isAuthLoading ? 'Menyiapkan Dashboard...' : 'Set Target & Mulai Belajar! 🚀'}
+        </button>
       </div>
     </div>
   `;
@@ -193,6 +197,8 @@ function attachStepEvents() {
 }
 
 async function handleAuth() {
+  if (isAuthLoading) return;
+  
   const email = document.getElementById('auth-email')?.value?.trim();
   const password = document.getElementById('auth-password')?.value;
   const isLogin = authMode === 'login';
@@ -216,9 +222,13 @@ async function handleAuth() {
     }
 
     console.log('Attempting to register...');
+    isAuthLoading = true;
+    renderStep();
+    
     const result = await registerAccount(email, password);
     console.log('Register result:', result);
 
+    isAuthLoading = false;
     if (!result.ok) {
       authError = result.error;
       renderStep();
@@ -230,9 +240,13 @@ async function handleAuth() {
     renderStep();
   } else {
     console.log('Attempting to login...');
+    isAuthLoading = true;
+    renderStep();
+
     const result = await loginAccount(email, password);
     console.log('Login result:', result);
 
+    isAuthLoading = false;
     if (!result.ok) {
       authError = result.error;
       renderStep();
@@ -251,7 +265,9 @@ async function handleAuth() {
 }
 
 
-function handleProfileFinish() {
+async function handleProfileFinish() {
+  if (isAuthLoading) return;
+
   const name = document.getElementById('input-name')?.value?.trim();
   const univ = document.getElementById('input-univ')?.value?.trim();
   const major = document.getElementById('input-major')?.value?.trim();
@@ -266,7 +282,14 @@ function handleProfileFinish() {
   userData.targetUniv = univ;
   userData.targetMajor = major;
 
+  isAuthLoading = true;
+  renderStep();
+
+  // Simulate a bit of loading for UX
+  await new Promise(r => setTimeout(r, 600));
+
   setUser(userData);
+  isAuthLoading = false;
   finishOnboarding();
 }
 
